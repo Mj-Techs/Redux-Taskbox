@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from "react";
+import { Route } from "react-router-dom";
+import Modal from "react-modal";
+import { Wrapper, Nav, Main } from "./App-Style";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/Home";
+import Tasks from "./Components/Tasks";
+Modal.setAppElement("#root");
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <Nav>
+        <Navbar />
+      </Nav>
+      <Main>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/myTasks" component={Tasks} />
+      </Main>
+    </Wrapper>
   );
-}
+};
 
 export default App;
