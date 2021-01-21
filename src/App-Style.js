@@ -76,6 +76,13 @@ export const SubmitButton = styled(Button)`
     background: ${(props) => (props.disabled ? "lightgray" : "green")};
   }
 `;
+export const CancelButton = styled(Button)`
+  background: ${(props) => props.red && "red"};
+  &:hover {
+    color: ${(props) => props.red && "black"};
+    background: ${(props) => props.red && "red"};
+  }
+`;
 export const TaskHeader = styled.div`
   font-size: 2rem;
   color: white;

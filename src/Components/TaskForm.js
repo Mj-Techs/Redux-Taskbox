@@ -11,7 +11,7 @@ import {
   StatusDiv,
   Checkbox,
 } from "./ModalStyle";
-import { SubmitButton } from "../App-Style";
+import { SubmitButton, CancelButton } from "../App-Style";
 import { postTask } from "../Actions/TaskAction";
 import { TaskUpdater } from "../Actions/TaskAction";
 const TaskForm = (props) => {
@@ -66,6 +66,11 @@ const TaskForm = (props) => {
         <SubmitButton type="submit" disabled={!formData.title}>
           save
         </SubmitButton>
+        {props.id && (
+          <CancelButton red onClick={toggle}>
+            cancel
+          </CancelButton>
+        )}
       </form>
       <button onClick={toggle} style={crossStyle}>
         X
