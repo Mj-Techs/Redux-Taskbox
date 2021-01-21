@@ -8,7 +8,7 @@ import {
   TaskContainer,
 } from "../App-Style";
 import TaskForm from "./TaskForm";
-import { startGetTasks } from "../Actions/postTask";
+import { startGetTasks } from "../Actions/TaskAction";
 import TaskShow from "./TaskShow";
 const Tasks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,9 +33,19 @@ const Tasks = () => {
         </div>
       </TaskNav>
       <TaskContainer>
-        {tasks.map((task) => (
-          <TaskShow {...task} key={task.id} />
-        ))}
+        {tasks.length === 0 ? (
+          <h2>Sorry! There is no task</h2>
+        ) : (
+          tasks.map((task) => (
+            <TaskShow
+              {...task}
+              key={task.id}
+              open={isModalOpen}
+              toggle={ToggleModal}
+              showModal={showModal}
+            />
+          ))
+        )}
       </TaskContainer>
     </TaskWrapper>
   );

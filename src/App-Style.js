@@ -69,6 +69,13 @@ export const Button = styled.button`
     background: orange;
   }
 `;
+export const SubmitButton = styled(Button)`
+  background: ${(props) => (props.disabled ? "lightgray" : "green")};
+  &:hover {
+    color: ${(props) => (props.disabled ? "white" : "black")};
+    background: ${(props) => (props.disabled ? "lightgray" : "green")};
+  }
+`;
 export const TaskHeader = styled.div`
   font-size: 2rem;
   color: white;
@@ -88,4 +95,17 @@ export const TaskContainer = styled.div`
   padding: 1rem 2em;
   background: white;
   overflow-y: auto;
+`;
+
+export const TaskDiv = styled.div`
+  width: 100%;
+  height: auto;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid;
+  border-left: 5px solid;
+  border-left-color: ${(props) => (props.status ? "green" : "red")};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

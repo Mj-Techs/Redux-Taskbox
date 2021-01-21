@@ -6,7 +6,19 @@ const taskReducer = (state = usersInitialState, action) => {
       return [...action.payload];
     }
     case "ADD_TASKS": {
-      return [...state, action.payload];
+      return [action.payload, ...state];
+    }
+    case "REMOVE_TASK": {
+      return state.filter((task) => task.id !== action.payload.id);
+    }
+    case "EDIT_TASK": {
+      return state.map((task) => {
+        if (task.id === action.payload.id) {
+          return { ...task, ...action.payload };
+        } else {
+          return { ...task };
+        }
+      });
     }
     default: {
       return [...state];

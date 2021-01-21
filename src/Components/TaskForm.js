@@ -11,17 +11,18 @@ import {
   StatusDiv,
   Checkbox,
 } from "./ModalStyle";
-import { Button } from "../App-Style";
-import { postUser } from "../Actions/postTask";
+import { SubmitButton } from "../App-Style";
+import { postTask } from "../Actions/TaskAction";
+import { TaskUpdater } from "../Actions/TaskAction";
 const TaskForm = (props) => {
   const { open, toggle } = props;
+  console.log(props.id, props.title, props.status);
   const [formData, setFormData] = useState({
-    id: uuidv4(),
-    title: "",
-    status: false,
+    id: props.id ? props.id : uuidv4(),
+    title: props.title ? props.title : "",
+    status: props.status ? props.status : false,
   });
-  // const [disable, setDisable] = useState(formData.title === "" ? false : true);
-  // console.log(disable);
+
   const dispatch = useDispatch();
   const handleFormData = (e) => {
     if (e.target.name === "title") {
@@ -32,7 +33,14 @@ const TaskForm = (props) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postUser(formData));
+    if (!props.id) {
+      console.log(true);
+      dispatch(postTask(formData));
+      setFormData({ title: "", status: false });
+    } else {
+      console.log(false);
+      dispatch(TaskUpdater(props.id, formData));
+    }
   };
   return (
     <Modal isOpen={open} onRequestClose={toggle} style={customStyles}>
@@ -55,9 +63,9 @@ const TaskForm = (props) => {
           />
         </StatusDiv>
         <br />
-        <Button type="submit" disabled={!formData.title}>
+        <SubmitButton type="submit" disabled={!formData.title}>
           save
-        </Button>
+        </SubmitButton>
       </form>
       <button onClick={toggle} style={crossStyle}>
         X
