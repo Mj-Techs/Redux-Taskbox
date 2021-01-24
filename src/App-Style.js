@@ -1,16 +1,18 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 export const Wrapper = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(to right bottom, #36d1dc, #5b86e5);
   width: auto;
   display: grid;
   grid-template: 0.1fr 1fr/1fr;
+  background-size: cover;
+  background-attachment: fixed;
 `;
 export const Nav = styled.div`
   border: 1px solid black;
   border-radius: 10px;
-  /* border-bottom: 1px solid red; */
 `;
 export const Main = styled.div`
   border: 1px solid;
@@ -83,7 +85,7 @@ export const CancelButton = styled(Button)`
     background: ${(props) => props.red && "red"};
   }
 `;
-export const TaskHeader = styled.div`
+export const TaskHeader = styled(motion.div)`
   font-size: 2rem;
   color: white;
   border-radius: 0.25rem;

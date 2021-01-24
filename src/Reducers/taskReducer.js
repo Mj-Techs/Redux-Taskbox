@@ -2,7 +2,7 @@ const usersInitialState = [];
 
 const taskReducer = (state = usersInitialState, action) => {
   switch (action.type) {
-    case "SET_TASKS": {
+    case "GET_TASKS": {
       return [...action.payload];
     }
     case "ADD_TASKS": {

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* overflow: hidden; */
 }
 ::-webkit-scrollbar {
   width: 10px;
@@ -14,4 +15,51 @@
 }
 .title {
   font-size: 1.5rem;
+}
+.task__header {
+  text-align: center;
+  font-family: sans-serif;
+  margin: 50px;
+  padding-top: 10%;
+}
+
+.container {
+  height: 579px;
+  width: 100%;
+  position: absolute;
+  /* top: 10; */
+  left: 0;
+}
+
+.text {
+  width: 900px;
+  position: absolute;
+  top: 50px;
+  left: 300px;
+  color: #fff;
+  letter-spacing: 8px;
+}
+.text h1 {
+  font-size: 3.5rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  margin-bottom: 40px;
+  position: relative;
+  animation: text 3s 1;
+}
+.text p {
+  font-size: 1.8rem;
+  line-height: 8px;
+  margin-top: 50px;
+}
+@keyframes text {
+  0% {
+    color: black;
+    margin-bottom: -50px;
+  }
+  30% {
+    color: red;
+    letter-spacing: 20px;
+    margin-bottom: -40px;
+  }
 }

@@ -16,7 +16,6 @@ import { postTask } from "../Actions/TaskAction";
 import { TaskUpdater } from "../Actions/TaskAction";
 const TaskForm = (props) => {
   const { open, toggle } = props;
-  console.log(props.id, props.title, props.status);
   const [formData, setFormData] = useState({
     id: props.id ? props.id : uuidv4(),
     title: props.title ? props.title : "",
@@ -34,11 +33,9 @@ const TaskForm = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!props.id) {
-      console.log(true);
       dispatch(postTask(formData));
-      setFormData({ title: "", status: false });
+      setFormData({ id: uuidv4(), title: "", status: false });
     } else {
-      console.log(false);
       dispatch(TaskUpdater(props.id, formData));
     }
   };

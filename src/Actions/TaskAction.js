@@ -19,7 +19,7 @@ export const postTask = (data) => {
 
 // Get Task
 const setTasks = (tasks) => {
-  return { type: "SET_TASKS", payload: tasks };
+  return { type: "GET_TASKS", payload: tasks };
 };
 
 export const startGetTasks = () => {
@@ -46,6 +46,7 @@ export const taskRemover = (id) => {
       .delete(`http://localhost:3033/api/tasks/${id}`)
       .then((response) => {
         const result = response.data;
+        console.log(result);
         dispatch(deleteTask(result));
       })
       .catch((err) => alert(err.message));

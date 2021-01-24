@@ -14,6 +14,7 @@ const Tasks = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.tasks);
+
   useEffect(() => {
     dispatch(startGetTasks());
   }, []);
@@ -23,10 +24,13 @@ const Tasks = () => {
   const ToggleModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <TaskWrapper>
       <TaskNav>
-        <TaskHeader>My Tasks-{tasks.length}</TaskHeader>
+        <TaskHeader animate={{ rotate: 360 }} transition={{ duration: 2 }}>
+          My Tasks-{tasks.length}
+        </TaskHeader>
         <div>
           <Button onClick={showModal}>Add Task</Button>
           {isModalOpen && <TaskForm open={isModalOpen} toggle={ToggleModal} />}
@@ -34,17 +38,19 @@ const Tasks = () => {
       </TaskNav>
       <TaskContainer>
         {tasks.length === 0 ? (
-          <h2>Sorry! There is no task</h2>
+          <h2 className="task__header">Sorry! There is no task</h2>
         ) : (
-          tasks.map((task) => (
-            <TaskShow
-              {...task}
-              key={task.id}
-              open={isModalOpen}
-              toggle={ToggleModal}
-              showModal={showModal}
-            />
-          ))
+          tasks.map((task) => {
+            return (
+              <TaskShow
+                {...task}
+                key={task.id}
+                open={isModalOpen}
+                toggle={ToggleModal}
+                showModal={showModal}
+              />
+            );
+          })
         )}
       </TaskContainer>
     </TaskWrapper>

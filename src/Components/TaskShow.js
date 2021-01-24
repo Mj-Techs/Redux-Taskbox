@@ -4,7 +4,6 @@ import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { TaskDiv } from "../App-Style";
 import { taskRemover } from "../Actions/TaskAction";
-
 import EditTask from "./EditTask";
 const TaskShow = ({ title, status, id }) => {
   const [editTask, setEditTask] = useState(false);
@@ -20,6 +19,7 @@ const TaskShow = ({ title, status, id }) => {
   const ToggleModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <TaskDiv status={status}>
       <div className="title">{title}</div>
@@ -27,9 +27,11 @@ const TaskShow = ({ title, status, id }) => {
         <MdDelete
           size={25}
           className="delete"
-          onClick={() => handleDelete(id)}
+          onClick={() => {
+            handleDelete(id);
+          }}
         />
-        <FaEdit size={25} onClick={() => handleEdit(id)} />
+        <FaEdit size={25} onClick={handleEdit} />
         {editTask && (
           <EditTask
             id={id}
